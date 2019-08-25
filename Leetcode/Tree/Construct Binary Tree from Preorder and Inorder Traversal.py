@@ -25,5 +25,5 @@ class Solution(object):
                     parent = stack.pop()
                 parent.right = newnode
             parent = newnode
-        
+
         return root
