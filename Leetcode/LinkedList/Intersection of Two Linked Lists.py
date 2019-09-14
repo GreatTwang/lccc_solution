@@ -14,6 +14,7 @@ class Solution(object):
                 return headB
             headB=headB.next
         return None
+        
 #   better method  O(m+n)   O(1)     
     def getIntersectionNode(self, headA, headB):
         """
