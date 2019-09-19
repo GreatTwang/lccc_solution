@@ -1,22 +1,18 @@
-class Solution(object):
-    def rightSideView(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        q = [root]
+        res=[]
+        level=0
         if not root:
             return []
-        queue = [root]
-        res = []
-        while queue:
-            newqueue = []
-            while queue:
-                node = queue.pop(0)
-                if node.left:
-                    newqueue.append(node.left)
-                if node.right:
-                    newqueue.append(node.right)
-            res.append(node.val)
-            queue = newqueue
-        
+        while q:
+            length =len(q)
+            for i in range(length):
+                temp=q.pop(0)
+                if temp.left:
+                    q.append(temp.left)
+                if temp.right:
+                    q.append(temp.right)
+                if i==length-1:
+                    res.append(temp.val)
         return res

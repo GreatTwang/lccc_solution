@@ -13,20 +13,17 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        s = []
-        if root == None:
-            return 'None'
-        stack= [root]
-        while stack:
-            temp = stack.pop()
-            if temp ==None:
-                s.append('None')
-            else:
-                s.append(str(temp.val))
-                stack.append(temp.right)
-                stack.append(temp.left)
-        return ','.join(s)
-                    
+        self.s=[]
+        self.helper(root)
+        return ','.join(self.s)
+    
+    def helper(self,root):
+        if root is None:
+            self.s.append('None')
+        else:
+            self.s.append(str(root.val))
+            self.helper(root.left)
+            self.helper(root.right)
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -34,17 +31,18 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        def helper(l):
-            if l[0]=='None':
-                l.pop(0)
-                return None
-            root = TreeNode(l[0])
+        l=data.split(',')
+        root=self.dhelper(l)
+        return root
+    
+    def dhelper(self,l):
+        if l[0]=='None':
             l.pop(0)
-            root.left = helper(l)
-            root.right = helper(l)
-            return root
-        d = data.split(',')
-        root = helper(d)
+            return None
+        root=TreeNode(l[0])
+        l.pop(0)
+        root.left=self.dhelper(l)
+        root.right=self.dhelper(l)
         return root
         
 
