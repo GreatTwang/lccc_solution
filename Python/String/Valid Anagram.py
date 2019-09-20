@@ -4,7 +4,7 @@ class Solution:
             return False
         table={}
         for c in s:
-            table[c]=table[c]+1 if c in table else 1
+            table[c]=table.get(c,0) + 1
         for c in t:
             if c in table:
                 table[c]-=1
