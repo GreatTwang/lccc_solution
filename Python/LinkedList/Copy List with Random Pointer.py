@@ -1,7 +1,7 @@
 class Solution:
     def copyRandomList(self, head: 'Node') -> 'Node':
         dummy_new = Node(None, None, None)
-        mappings = collections.defaultdict()
+        mappings = dict()
     
         old_node = head
         prev_new = dummy_new
