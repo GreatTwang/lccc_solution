@@ -1,3 +1,4 @@
+#Given a string, sort it in decreasing order based on the frequency of characters.
 class Solution:
     def frequencySort(self, s: str) -> str:
         sortstr=str()
