@@ -6,20 +6,17 @@ class Solution:
         for i in range(len(s)):
             c=s[i]
             if c.isdigit():
-                num+=c
-                continue
-            if c=="[":
+                num+=c    
+            elif c=="[":
                 stack.append(["",int(num)])
                 num=""    
-                continue           
-            if c=="]":
+            elif c=="]":
                 word, times=stack.pop()
                 if stack:
                     stack[-1][0]+=word*times
                 else:
                     res+=word*times
-                continue
-            if stack:
+            elif stack:
                 stack[-1][0]+=c
             else:
                 res+=c
