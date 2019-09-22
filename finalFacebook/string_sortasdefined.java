@@ -1,3 +1,0 @@
-class Solution{
-	public List<
-}
