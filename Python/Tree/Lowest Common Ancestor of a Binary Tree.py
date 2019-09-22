@@ -6,13 +6,14 @@ class Solution(object):
             return p
         if self.isParent(q, p):
             return q
-        while root:
-            if self.isParent(root.left, p) and self.isParent(root.left, q):
-                root = root.left
-            elif self.isParent(root.right, p) and self.isParent(root.right, q):
-                root = root.right
+        curr=root
+        while curr:
+            if self.isParent(curr.left, p) and self.isParent(curr.left, q):
+                curr = curr.left
+            elif self.isParent(curr.right, p) and self.isParent(curr.right, q):
+                curr = curr.right
             else:
-                return root
+                return curr
         return root
         
     
@@ -22,14 +23,3 @@ class Solution(object):
         if p == c:
             return True
         return self.isParent(p.left, c) or self.isParent(p.right, c)
-        
-        ''' # recursive
-        if root in (None, p, q):
-            return root
-        
-        left, right = (self.lowestCommonAncestor(kid, p, q) for kid in (root.left, root.right))
-        
-        if left and right:
-            return root
-        return left or right
-        '''

@@ -1,3 +1,4 @@
+# recursive
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if (p.val-root.val)*(q.val-root.val) <= 0:
@@ -7,7 +8,7 @@ class Solution:
         else:
             return self.lowestCommonAncestor(root.right,p,q)
 
-## interative
+## iterative
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         # Value of p
