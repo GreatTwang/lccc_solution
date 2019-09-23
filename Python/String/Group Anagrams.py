@@ -1,13 +1,13 @@
-## O(NK)    O(NK)
+## O(NK)    O(NK)  K is maxlen of all words
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        ans = collections.defaultdict(list)
-        for s in strs:
-            count = [0] * 26
-            for c in s:
-                count[ord(c) - ord('a')] += 1
-            if tuple(count) not in ans:
-                ans[tuple(count)]=[s]
+        ans=dict()
+        for each in strs:
+            count=[0]*26
+            for c in each:
+                count[ord(c)-ord('a')]+=1
+            if tuple(count) in ans:
+                ans[tuple(count)].append(each)
             else:
-                ans[tuple(count)].append(s)
+                ans[tuple(count)]=[each]
         return ans.values()
