@@ -1,3 +1,23 @@
+# OrderedDict   O(1)    O(capacity)
+from collections import OrderedDict
+class LRUCache(OrderedDict):
+    def __init__(self, capacity):
+        self.capacity = capacity
+
+    def get(self, key):
+        if key not in self:
+            return -1
+        self.move_to_end(key)
+        return self[key]
+
+    def put(self, key, value):
+        if key in self:
+            self.move_to_end(key)
+        self[key] = value
+        if len(self) > self.capacity:
+            self.popitem(last = False)
+
+#   dict+double-linked list   O(1)    O(capacity)
 class Node:
     def __init__(self, k, v):
         self.key = k
@@ -7,9 +27,6 @@ class Node:
 
 class LRUCache(object):
     def __init__(self, capacity):
-        """
-        :type capacity: int
-        """
         self.capacity = capacity
         self.head = Node(0,0)
         self.tail = Node(0,0)
@@ -18,10 +35,6 @@ class LRUCache(object):
         self.cache = {}
 
     def get(self, key):
-        """
-        :type key: int
-        :rtype: int
-        """
         if key in self.cache:
             node = self.cache[key]
             node.prev.next = node.next
@@ -36,11 +49,6 @@ class LRUCache(object):
             return -1
 
     def put(self, key, value):
-        """
-        :type key: int
-        :type value: int
-        :rtype: void
-        """
         if key in self.cache:
             self.cache[key].val = value
             self.get(key)
