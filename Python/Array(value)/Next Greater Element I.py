@@ -1,14 +1,11 @@
+#   o(m+n)  O(m+n)
 class Solution(object):
     def nextGreaterElement(self, findNums, nums):
-        """
-        :type findNums: List[int]
-        :type nums: List[int]
-        :rtype: List[int]
-        """
+        # map key:currvalue value:next greater value
         maps = {}
         stack = []
         for n in nums:
-            while stack and stack[-1] < n:
+            while stack and stack[-1] < n:  # check if current value is next greater value for all values in stack
                 maps[stack.pop()] = n
             stack.append(n)
         

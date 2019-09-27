@@ -1,4 +1,3 @@
-class Solution:
 class Solution: 
     class Node:
         def __init__(self, name):
