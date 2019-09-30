@@ -5,10 +5,17 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        j=0
+        b=0     # right boundary of no-zero values
+        # partition: all zero on the right, all none-value on the left
         for i in range(len(nums)):
             if nums[i]!=0:
-                temp=nums[j]
-                nums[j]=nums[i]
-                nums[i]=temp
-                j+=1
+                nums[i],nums[b]=nums[b],nums[i]
+                b+=1
+
+'''
+1,0,3,0
+
+1300
+i=2
+b=1
+'''
