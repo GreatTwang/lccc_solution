@@ -1,3 +1,4 @@
+#   O(N)    O(W)
 class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         ans = [0] * len(T)

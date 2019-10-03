@@ -1,25 +1,52 @@
-# O(n)  O(n)
+# O(n)  O(1)
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if grid==[] or len(grid)==0 or grid[0]==[] or len(grid[0])==0:
-            return 0
         m  = len(grid)
+        if m==0:
+            return 0
         n  = len(grid[0])
-        visited = [[False]*n for i in range(m)]
+        if n==0:
+            return 0
         count= 0
         for i in range(m):
             for j in range(n):
-                if visited[i][j]==False and grid[i][j]=='1':
-                    self.dfs(visited,grid,m,n,i,j)
+                if grid[i][j]=='1':
+                    self.dfs(grid,m,n,i,j)
                     count+=1
         return count
-    def dfs(self,visited,grid,m,n,i,j):
-        if i<0 or i>=m or j<0 or j>=n:
+    def dfs(self,grid,m,n,i,j):
+        #out of boundary or visited, return
+        if i<0 or i>=m or j<0 or j>=n or grid[i][j]=='0' or grid[i][j]==-1:
             return
-        if grid[i][j]=='0' or visited[i][j]==True:
+        grid[i][j]=-1
+        self.dfs(grid,m,n,i-1,j)
+        self.dfs(grid,m,n,i,j-1)
+        self.dfs(grid,m,n,i+1,j)
+        self.dfs(grid,m,n,i,j+1)
+
+#   O(N)    O(n)
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m  = len(grid)
+        if m==0:
+            return 0
+        n  = len(grid[0])
+        if n==0:
+            return 0
+        seen=set()
+        count= 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j]=='1' and (i,j) not in seen:
+                    self.dfs(seen,grid,m,n,i,j)
+                    count+=1
+        return count
+    def dfs(self,seen,grid,m,n,i,j):
+        #out of boundary or visited, return
+        if i<0 or i>=m or j<0 or j>=n or grid[i][j]=='0' or (i,j) in seen:
             return
-        visited[i][j]=True
-        self.dfs(visited,grid,m,n,i-1,j)
-        self.dfs(visited,grid,m,n,i,j-1)
-        self.dfs(visited,grid,m,n,i+1,j)
-        self.dfs(visited,grid,m,n,i,j+1)
+        seen.add((i,j))
+        self.dfs(seen,grid,m,n,i-1,j)
+        self.dfs(seen,grid,m,n,i,j-1)
+        self.dfs(seen,grid,m,n,i+1,j)
+        self.dfs(seen,grid,m,n,i,j+1)
