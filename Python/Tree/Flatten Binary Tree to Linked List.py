@@ -1,21 +1,19 @@
-class Solution:
-    def flatten(self, root: TreeNode) -> None:
+class Solution(object):
+    def flatten(self, root):
         """
-        Do not return anything, modify root in-place instead.
+        :type root: TreeNode
+        :rtype: void Do not return anything, modify root in-place instead.
         """
-        pre = None
-        self.helper(root, pre)
-    
-    def helper(self, root, pre):
-        if not root:
-            return pre
-        pre = self.helper(root.right, pre)
-        pre = self.helper(root.left, pre)
-        
-        root.right = pre
-        root.left = None
-        pre = root
-        return root
+        if root:
+            self.flatten(root.left)
+            self.flatten(root.right)
+            if root.left:
+                p = root.left
+                while p.right:
+                    p = p.right
+                p.right = root.right
+                root.right = root.left
+            root.left = None
 
 
 '''
