@@ -13,6 +13,5 @@ class Solution:
             else:
                 curr=prev+last if s[i:i+2]<="26" else prev
             last=prev
-            prev=curr
-                     
+            prev=curr                   
         return prev
