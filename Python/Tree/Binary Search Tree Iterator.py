@@ -1,5 +1,4 @@
 class BSTIterator(object):
-    
     def __init__(self, root):
         """
         :type root: TreeNode
@@ -13,8 +12,6 @@ class BSTIterator(object):
         :rtype: bool
         """
         return len(self.treeStack) != 0
-        
-
     def next(self):
         """
         :rtype: int
